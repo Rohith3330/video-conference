@@ -1,6 +1,6 @@
-# Video-Group-Meeting
+# Video-conference
 
-Videe-Group-Meeting is a simple video chat application for multi-users based on React, Node Express and WebRTC.
+Video-conference is a simple video chat application for multi-users based on React, Node Express and WebRTC.
 **Technologies Used**
 
 - React
