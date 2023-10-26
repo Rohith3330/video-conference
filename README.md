@@ -1,9 +1,6 @@
 # Video-Group-Meeting
 
 Videe-Group-Meeting is a simple video chat application for multi-users based on React, Node Express and WebRTC.
-
-This project is **deployed** at: https://video-group-meeting.herokuapp.com/
-
 **Technologies Used**
 
 - React
@@ -12,8 +9,6 @@ This project is **deployed** at: https://video-group-meeting.herokuapp.com/
 - Socket.io
 - [Syled-components](https://styled-components.com/)
 - [Simple-peer](https://github.com/feross/simple-peer)
-
-**Contributors:** [Hyunse Kim](https://github.com/Hyunse)
 
 ---
 
@@ -27,7 +22,7 @@ This project is **deployed** at: https://video-group-meeting.herokuapp.com/
 
 ## Installation
 ### Clone
-- Clone this repo to your local machine using `https://github.com/Hyunse/video-group-meeting.git`
+- Clone this repo to your local machine using `https://github.com/Rohith3330/video-conference.git`
 
 ### Setup
 **Client**
@@ -54,9 +49,6 @@ This project is **deployed** at: https://video-group-meeting.herokuapp.com/
   </code>
 </pre>
 
-## Todo 🔨🔨🔨
 
-- [x] Switch Camera options
 
-## License
-[MIT License](./LICENSE)
+

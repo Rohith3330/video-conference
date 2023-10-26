@@ -5,6 +5,7 @@ import socket from '../../socket';
 import VideoCard from '../Video/VideoCard';
 import BottomBar from '../BottomBar/BottomBar';
 import Chat from '../Chat/Chat';
+import Copyid from '../copyid/Copyid';
 
 const Room = (props) => {
   const currentUser = sessionStorage.getItem('user');
@@ -312,7 +313,7 @@ const Room = (props) => {
 
     setShowVideoDevices(false);
   };
-
+  
   const clickCameraDevice = (event) => {
     if (event && event.target && event.target.dataset && event.target.dataset.value) {
       const deviceId = event.target.dataset.value;
@@ -364,7 +365,9 @@ const Room = (props) => {
           {/* Joined User Vidoe */}
           {peers &&
             peers.map((peer, index, arr) => createUserVideo(peer, index, arr))}
+            <Copyid textToCopy={roomId}/>
         </VideoContainer>
+        
         <BottomBar
           clickScreenSharing={clickScreenSharing}
           clickChat={clickChat}
@@ -377,6 +380,7 @@ const Room = (props) => {
           showVideoDevices={showVideoDevices}
           setShowVideoDevices={setShowVideoDevices}
         />
+        
       </VideoAndBarContainer>
       <Chat display={displayChat} roomId={roomId} />
     </RoomContainer>

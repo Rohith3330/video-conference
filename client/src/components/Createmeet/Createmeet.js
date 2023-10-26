@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
+// import { useHistory } from 'react-router-dom';
 import socket from '../../socket';
-import { useHistory } from 'react-router-dom';
-import Createmeet from '../Createmeet/Createmeet';
+
+
 
 function generateRandomString() {
   let randomString = "";
@@ -10,8 +11,8 @@ function generateRandomString() {
 
   for (let i = 0; i < 7; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
-    if(i==3){
-      randomString+='-';
+    if(i===3){
+        randomString+='-';
     }
     randomString += characters[randomIndex];
   }
@@ -19,18 +20,17 @@ function generateRandomString() {
   return randomString;
 }
 
-const Main = (props) => {
-  const roomRef = useRef();
+const Createmeet = (props) => {
+//   const roomRef = useRef();
+    const [roomname,setroomname]=useState(generateRandomString());
   const userRef = useRef();
-  const history = useHistory();
   const [err, setErr] = useState(false);
   const [errMsg, setErrMsg] = useState('');
-
   useEffect(() => {
-
+    // setroomname(generateRandomString())
     socket.on('FE-error-user-exist', ({ error }) => {
       if (!error) {
-        const roomName = roomRef.current.value;
+        const roomName = roomname;
         const userName = userRef.current.value;
 
         sessionStorage.setItem('user', userName);
@@ -41,38 +41,36 @@ const Main = (props) => {
       }
     });
   }, [props.history]);
-
   
-
-  function clickJoin() {
-    const roomName = roomRef.current.value;
+   function clickJoin() {
+    setroomname(generateRandomString());
+    const roomName = roomname;
     const userName = userRef.current.value;
 
-    if (!roomName || !userName) {
+    if (!userName) {
       setErr(true);
-      setErrMsg('Enter Room Name or User Name');
-    } else {
+      setErrMsg('Enter User Name');
+    }
+    else if(!roomname){
+        setErr(true);
+        setErrMsg('Enter Room Name ');
+    } 
+    else {
       socket.emit('BE-check-user', { roomId: roomName, userName });
     }
-  }
-  function happy(){
-    // props.history.push("/create");\
-    window.location.href = '/create';
   }
 
   return (
     <MainContainer>
-      <Row>
+      {/* <Row>
         <Label htmlFor="roomName">Room ID</Label>
         <Input type="text" id="roomName" ref={roomRef} />
-      </Row>
+      </Row> */}
       <Row>
         <Label htmlFor="userName">User Name</Label>
         <Input type="text" id="userName" ref={userRef} />
       </Row>
-      <JoinButton onClick={clickJoin}> Join </JoinButton>
-      {err ? <Error>{errMsg}</Error> : null}
-      <JoinButton onClick={happy}> Create a new </JoinButton>
+      <JoinButton onClick={clickJoin}> Create </JoinButton>
       {err ? <Error>{errMsg}</Error> : null}
       
     </MainContainer>
@@ -127,4 +125,4 @@ const JoinButton = styled.button`
   }
 `;
 
-export default Main;
+export default Createmeet;
